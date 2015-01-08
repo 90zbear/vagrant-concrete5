@@ -1,0 +1,32 @@
+---
+- hosts: all
+  user: vagrant
+  sudo: yes
+  tasks:
+
+    - name: epal repo
+      command: sudo rpm -Uvh --force http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+
+    - name: remi repo
+      command: sudo rpm -Uvh --force http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+
+    - name: install httpd
+      yum: name=yum state=present
+
+    - name: install php
+      yum: name={{item}} state=present
+      with_items:
+        - php
+        - php-devel
+
+    - name: install mysql
+      yum: name=mysql-server state=installed
+
+    - name: stop iptables
+      service: name=iptables state=stopped
+
+    - name: start service
+      service: name={{item}} state=started
+      with_items:
+        - httpd
+        - mysqld
