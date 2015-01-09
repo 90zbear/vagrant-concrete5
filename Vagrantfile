@@ -7,7 +7,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define :server do |server|
     server.vm.hostname = "server"
-    server.vm.box = "centos6"
+    server.vm.box = "ubuntu14"
+    server.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
     server.vm.network :forwarded_port, guest: 22, host: 2002, id: "ssh"
     server.vm.network :forwarded_port, guest: 80, host: 8000, id: "http"
     server.vm.network :private_network, ip: "192.168.33.12", virtualbox__intnet: "network"
