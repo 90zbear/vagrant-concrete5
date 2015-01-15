@@ -12,6 +12,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     server.vm.network :forwarded_port, guest: 22, host: 2002, id: "ssh"
     server.vm.network :forwarded_port, guest: 80, host: 8000, id: "http"
     server.vm.network :private_network, ip: "192.168.33.12", virtualbox__intnet: "network"
+    server.vm.synced_folder "./server", "/var/www/html", mount_options: ['dmode=777','fmode=666']
   end
 
   config.vm.define :ansible do |ansible|
