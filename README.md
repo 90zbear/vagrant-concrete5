@@ -1,15 +1,12 @@
 vagrant-concrete5
 =================
 
-vagrantfile for concrete5.
+concrete5をローカルに入れるためのbox
 
-ansible-playbook playbook.yml -i hosts -c paramiko
+osはubuntu
 
-centosサーバを立てるためのubuntu。
-両方centosにするか、両方ubuntuにするかは悩み中。
+mysqlのパスワード設定しないとなあと思っている。
 
-- mySQLが5.1なので新しいバージョンに差し替えたい。
-- PHPも5.4にしたい。
-- role関係を追加しないとダメ。
+https://github.com/tao-s/c5downloader
+コンクリはこの神ツールを勝手にダウンロードして展開しているので、tao-sさんに感謝しながらブラウザからアクセスすればセットアップできるはず。
 
-というわけでまだ使えません。
