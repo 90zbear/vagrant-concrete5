@@ -12,6 +12,9 @@
     - name: git install
       apt: pkg=git state=installed
 
+    - name: unzip install
+      apt: pkg=unzip state=installed
+
     - name: apache install
       apt: pkg=apache2 state=installed
     - template: src=./template/apache2/sites-available/000-default.conf dest=/etc/apache2/sites-available/000-default.conf owner=root mode=0600
@@ -42,3 +45,8 @@
       with_items:
       - mysql-server
 
+    - name: c5downloader
+      get_url: url="https://github.com/tao-s/c5downloader/archive/master.zip" dest=/var/www/html
+    - name: c5 unzip
+      unarchive: src=/var/www/html/c5downloader-master.zip dest=/var/www/html copy=no
+    - command: mv /var/www/html/c5downloader-master /var/www/html/htdocs
